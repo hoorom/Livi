@@ -2,6 +2,7 @@ package se.kry.codetest.service;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.Objects;
 
 public class Service {
 
@@ -56,4 +57,22 @@ public class Service {
         return url+" "+name + " " + creationDate + " " +status;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(url);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj ==  null) {
+            return false;
+        }
+
+        if(!Service.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+
+        Service compared = (Service) obj;
+        return url.equals(compared.getUrl());
+    }
 }
